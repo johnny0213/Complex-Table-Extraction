@@ -315,12 +315,12 @@ At last, run generate_ernie_layout_ner_trainset_from_ppocrlabel.py to generate N
 
 Please note that the Ernie Layout NER dataset requires a special format below:  
 A textbox in OCR is a segment in Ernie_layout_NER.  
-`
+  
     "text": ["单", "个", "字", ...],								# EVERY SINGLE WORD/CHARACTER's text. Caution: This is NOT an OCR textbox.  
     "bbox": [[1956, 143, 2179, 196], [2065, 185, 2100, 213],...], # EVERY SINGLE WORD/CHARACTER's bbox. Caution: This is NOT an OCR bbox.  
     "segment_bbox": [[789, 41, 880, 56], [827, 52, 875, 61],... ],# EVERY TEXTBOX's bbox, SCALED TO [1000, 1000]. Caution: This IS an OCR bbox.  
     "segment_id": [0, 1, 1, 2, 2, 2, 2, 3, ...],                 # the id of the TEXTBOX that EVERY WORD/CHARACTER belongs to  
-`
+  
 See utils/Figure 4.  
    
 6.3 Train:  
@@ -351,7 +351,7 @@ Draw the textboxes with different colors illustrating their classes respectively
    
 Please note that:  
    
-a. NER results do not often align with OCR results, i.e. a textbox in OCR results may be split into two entities in NER results. Therefore NER results must be cleaned up to make it 100% align with OCR results.  
+a. NER results do not often align with OCR results, for example, a textbox in OCR results may be split into two entities in NER results. Therefore NER results must be cleaned up to make it 100% align with OCR results.  
    
 b. In rare cases, some specific textboxes in OCR results, such as 'HOURS', may be missing in NER results for unknown reasons, which makes it impossible for us to align NER results with OCR result. Here we just simply report an exception and skip the whole document image.   
    
@@ -383,7 +383,7 @@ Ernie-layout NER has shown us all the textboxes we are interested in, i.e. with 
 	INSURANCE_CLASS  
 	INSURANCE_PERCENTAGE  
    
-and has eliminated those we are not interested in, i.e. with the labels below:  
+And has eliminated those we are not interested in, i.e. with the labels below:  
 	PAGE_HEADER  
 	PROFILE_KEY  
 	PROFILE_VALUE  
