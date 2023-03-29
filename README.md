@@ -21,7 +21,7 @@ We have built the pipeline on the Baidu's Deep Learning stack, namely:
   Ernie-layout,  
   PaddleOCR v2.6.  
  
-   
+
 1. Text_Image_Orientation  
    
 Our approach is to fine-tune the PaddleClas PULC text_image_orientation pretrained model to get our classifier.   
@@ -78,7 +78,7 @@ Even after image orientation, our document images are always distorted in one wa
 We first tried to look for the top N in terms of width in all textboxes of an image, calculate their average slope, and then rotate the image to get it upright. However we found that in some cases an image was distorted so heavily that the upper half turned clockwise and the lower half turned counter-clockwise (or vice versa). Later we decided to take both halves into consideration, looking for the top N textboxes in the two halves respectively and then calculating their average slopes.  
    
 Please note that the following PaddleOCR parameters are very sensitive to and suitable for the document images we are concerned about, and do not make any changes to them unless you are very confident to do so:  
-   `
+`
   #DB parmas (for DET):  
   det_db_thresh=0.1,    
   det_db_box_thresh=0.,               
@@ -92,7 +92,7 @@ Please note that the following PaddleOCR parameters are very sensitive to and su
   det_east_nms_thresh=0.1,  
    
   rec_image_shape='3, 32, 320',   
-   `
+`
    
 4. Text_Image_Classification  
    
@@ -201,9 +201,10 @@ Please note that we don't use synthesized images in the train dataset. Instead, 
       - ./data/XFUND/zh_train/image/Label.txt  
       - ./data/XFUND/zh_val/image/Label.txt  
     ratio_list: [1.0, 0.1, 0.1, 0.1, 0.1]  
-`   
+`
+
 We don't use images from the section 2 OCR(for General Purpose) dataset because its annotation is somewhat low in quality and inconsistent with this dataset. If you can find other high-quality 3rd-party datasets, you can use them to augment your train dataset and expect improved accuracy.  
-We use the script generate_ppocrlabel_from_xfund.py to convert XFUND dataset into a trainset.  
+We use the script generate_ppocrlabel_from_xfund.py to convert XFUND dataset into our trainset.  
    
 5.4 DET Train:  
 PaddleOCR provides a script for training.  
@@ -223,7 +224,8 @@ Again we don't use synthesized images in the train dataset. Instead, we use real
       - ./data/XFUND/zh_train/image/rec_gt.txt  
       - ./data/XFUND/zh_val/image/rec_gt.txt  
     ratio_list: [1.0, 0.5, 0.5]  
-`   
+`
+
 5.7 REC Train:  
 
 python tools/train.py -c configs/rec/PP-OCRv3/ch_PP-OCRv3_rec_distillation.yml   
@@ -318,7 +320,7 @@ A textbox in OCR is a segment in Ernie_layout_NER.
     "bbox": [[1956, 143, 2179, 196], [2065, 185, 2100, 213],...], # EVERY SINGLE WORD/CHARACTER's bbox. Caution: This is NOT an OCR bbox.  
     "segment_bbox": [[789, 41, 880, 56], [827, 52, 875, 61],... ],# EVERY TEXTBOX's bbox, SCALED TO [1000, 1000]. Caution: This IS an OCR bbox.  
     "segment_id": [0, 1, 1, 2, 2, 2, 2, 3, ...],                 # the id of the TEXTBOX that EVERY WORD/CHARACTER belongs to  
-`   
+`
 See utils/Figure 4.  
    
 6.3 Train:  
@@ -392,7 +394,7 @@ Therefore we just simply group the textboxes into columns as per textboxes' NER 
 7.2 Restore lines: Determine what textboxes are on the same line, which must include one and only one textbox with the label:  
 	ITEM_NAME  
    
-and include one or more textboxes with the labels:  
+And include one or more textboxes with the labels:  
 	ITEM_VALUE  
 	SPEC  
 	UNIT  
