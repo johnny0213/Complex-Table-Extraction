@@ -139,7 +139,7 @@ First, run OCR for all the images, and save results in file ./data/ocr_results.t
 Then, manually label all the images in file ./data/labels.txt.  
 Finally, run generate_cls_trainset.py to generate the train and eval datasets.  
    
-Please note that in cls.txt:  
+Please note that:  
    
 a. We use the attribute 'name', which is the full path-name of an image, to find and open an image, instead of the attribute 'image'(which is BASE64-encoded string of an image in Ernie-layout's RVL-CDIP sample).  
    
@@ -355,7 +355,7 @@ a. NER results do not often align with OCR results, for example, a textbox in OC
    
 b. In rare cases, some specific textboxes in OCR results, such as 'HOURS', may be missing in NER results for unknown reasons, which makes it impossible for us to align NER results with OCR result. Here we just simply report an exception and skip the whole document image.   
    
-You may want to have a taste of the visualization samples we have produced in the ..\Table_Restoration\data folder.  
+You may want to have a taste of the visualization samples we have produced in the .\Table_Restoration\data folder.  
    
 You can refer to the links below for more information:  
 https://github.com/PaddlePaddle/PaddleNLP  
